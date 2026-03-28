@@ -149,7 +149,7 @@ class WadsPointCloudDataset(data.Dataset):
             # dist, ind = tree.query(data[:, :3], k=self.k)
             ind = cp.asnumpy(ind)
             dist = cp.asnumpy(dist)
-            ind = ind.astype(np.long)
+            ind = ind.astype(np.int64)
             # dist = dist.reshape(data.shape[0], -1)
             if self.save_ind:
                 parent = os.path.dirname(kd_path)
