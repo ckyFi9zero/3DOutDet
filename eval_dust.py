@@ -187,7 +187,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', '--model_save_path',
                         default='/home/bbb/dataset/data/saved_models/dust/outdet.pt')
     parser.add_argument('-o', '--test_output_path',
-                        default='/home/bbb/dataset/data/eval_results_dust')
+                        default='/home/bbb/dataset/data/eval_results')
     parser.add_argument('--K',
                         type=int, default=3)
     parser.add_argument('--test_batch_size',

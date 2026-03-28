@@ -1,0 +1,33 @@
+{
+  "base_config": {
+    "data_dir": "/home/bbb/dataset/data/LIDARDUSTX2",
+    "label_config": "binary_dedust.yaml",
+    "K": 5,
+    "device": "cuda:0",
+    "train_batch_size": 1,
+    "val_batch_size": 1
+  },
+  "experiments": [
+    {
+      "id": "test_001_quick",
+      "name": "快速测试",
+      "description": "1个epoch快速测试系统",
+      "modifications": "仅用于测试，num_epoch=1",
+      "params": {
+        "num_epoch": 1,
+        "lr": 0.001,
+        "weight_decay": 0.0001,
+        "scheduler": "multistep",
+        "milestones": "30,40,45",
+        "gamma": 0.1,
+        "loss_ce_weight": 1.0,
+        "loss_lovasz_weight": 1.0,
+        "loss_focal_weight": 0.0,
+        "focal_gamma": 2.0,
+        "epsilon_w": 0.001,
+        "depth": 1,
+        "dilate": 1
+      }
+    }
+  ]
+}
