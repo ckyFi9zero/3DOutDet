@@ -214,10 +214,10 @@ def evaluate_cm(cm, class_name):
 if __name__ == '__main__':
     # Training settings
     parser = argparse.ArgumentParser(description='')
-    parser.add_argument('-d', '--data_dir', default="/var/local/home/aburai/DATA/WADS2")
+    parser.add_argument('-d', '--data_dir', default="/home/bbb/dataset/data/WADS2")
     parser.add_argument("--label_config", type=str, default='binary_desnow_wads.yaml')
     parser.add_argument('-p', '--model_save_path',
-                        default='/var/local/home/aburai/DATA/3D_OutDet/bin_desnow_wads')
+                        default='/home/bbb/dataset/data/saved_models/wads/')
     parser.add_argument('--K', type=int, default=3, help='batch size for training (default: 2)')
 
     parser.add_argument('--train_batch_size', type=int, default=1, help='batch size for training (default: 2)')

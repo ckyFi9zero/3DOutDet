@@ -7,7 +7,11 @@ import numpy as np
 import pickle
 import cupy as cp
 from cuml.neighbors import NearestNeighbors
-from cuml.common.device_selection import set_global_device_type
+try:
+    from cuml.common.device_selection import set_global_device_type
+except ImportError:
+    def set_global_device_type(*args, **kwargs):
+        return None
 
 
 set_global_device_type('gpu')
