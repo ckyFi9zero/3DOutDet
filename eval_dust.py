@@ -47,7 +47,7 @@ def main(args):
     ordered_class_names = [class_strings[class_inv_remap[i]] for i in range(num_classes)]
 
     # 模型
-    model = OutDet(num_classes=num_classes, kernel_size=args.K, depth=1, dilate=dilate)
+    model = OutDet(num_classes=num_classes, kernel_size=args.K, depth=args.depth, dilate=dilate)
     model = model.to(device)
     if os.path.exists(model_save_path):
         model.load_state_dict(torch.load(model_save_path, map_location=device))
@@ -190,6 +190,9 @@ if __name__ == '__main__':
                         default='/home/bbb/dataset/data/eval_results')
     parser.add_argument('--K',
                         type=int, default=3)
+    parser.add_argument('--depth',
+                        type=int, default=1,
+                        help='模型深度，需与训练时一致（exp_011 填2，exp_012 填3）')
     parser.add_argument('--test_batch_size',
                         type=int, default=1)
     parser.add_argument('--device',

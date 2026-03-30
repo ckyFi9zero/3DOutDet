@@ -9,7 +9,7 @@ import torch
 from tqdm import tqdm
 from dataset.utils.collate import collate_fn_cp
 from deterministic import configure_randomness
-from dataset import WadsPointCloudDataset   # 数据集结构兼容，直接复用
+from dataset import DustPointCloudDataset   # 数据集结构兼容，直接复用
 
 warnings.filterwarnings("ignore")
 
@@ -20,7 +20,7 @@ def main(args):
 
     # imageset='all' 会读取 yaml 里 train+valid+test 全部序列
     # 对所有帧预计算 kNN 并缓存到 knn/ 子目录
-    dataset = WadsPointCloudDataset(
+    dataset = DustPointCloudDataset(
         device,
         args.data_dir + '/sequences/',
         imageset='all',

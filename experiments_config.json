@@ -2,7 +2,7 @@
   "base_config": {
     "data_dir": "/home/bbb/dataset/data/LIDARDUSTX2",
     "label_config": "binary_dedust.yaml",
-    "K": 5,
+    "K": 3,
     "device": "cuda:0",
     "train_batch_size": 1,
     "val_batch_size": 1
@@ -10,8 +10,8 @@
   "experiments": [
     {
       "id": "exp_001_baseline",
-      "name": "Baseline K=5",
-      "description": "基线实验，K=5，标准配置",
+      "name": "Baseline K=3",
+      "description": "基线实验，K=3，标准配置",
       "modifications": "无修改，作为对照组",
       "params": {
         "num_epoch": 50,

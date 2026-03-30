@@ -1,2 +1,4 @@
 from ._point_cloud_dataset import WadsPointCloudDataset
+from dataset._point_cloud_dataset import DustPointCloudDataset
+
 # from ._spray_dataset import SemanticSprayDataset, SemSprayPointCloudDataset

@@ -14,7 +14,7 @@ from dataset.utils.collate import collate_fn_cp
 from deterministic import configure_randomness
 from modules import OutDet
 from modules.lovasz_losses import lovasz_softmax_flat
-from dataset import WadsPointCloudDataset
+from dataset import DustPointCloudDataset
 import matplotlib
 matplotlib.use('Agg')   # 服务器无显示器环境，不用 plt.show()
 import matplotlib.pyplot as plt
@@ -65,11 +65,11 @@ def main(args):
 
     # 数据集
     tree_k = int(np.round(args.K * args.K))
-    train_dataset = WadsPointCloudDataset(
+    train_dataset = DustPointCloudDataset(
         device, data_path + '/sequences/', imageset='train',
         label_conf=args.label_config, k=tree_k, shuffle_indices=False
     )
-    val_dataset = WadsPointCloudDataset(
+    val_dataset = DustPointCloudDataset(
         device, data_path + '/sequences/', imageset='val',
         label_conf=args.label_config, k=tree_k
     )

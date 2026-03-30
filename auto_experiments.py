@@ -70,7 +70,7 @@ def build_train_command(base_config, exp_config, model_save_path):
     return " ".join(cmd_parts)
 
 
-def build_eval_command(base_config, model_path, sensor=None):
+def build_eval_command(base_config, model_path, exp_params=None, sensor=None):
     """构建评估命令"""
     cmd_parts = [
         "python eval_dust.py",
@@ -81,6 +81,10 @@ def build_eval_command(base_config, model_path, sensor=None):
         f"--device {base_config['device']}",
         f"--test_batch_size 1",
     ]
+
+    # 透传实验级参数（如 depth），缺省时 eval_dust.py 内部默认值生效
+    if exp_params and 'depth' in exp_params:
+        cmd_parts.append(f"--depth {exp_params['depth']}")
 
     if sensor:
         cmd_parts.append(f"--sensor {sensor}")
@@ -129,7 +133,8 @@ def run_experiment(base_config, exp_config, results_dir, skip_training=False):
     eval_outputs = []
 
     # 评估全部传感器
-    eval_cmd = build_eval_command(base_config, model_path)
+    eval_cmd = build_eval_command(base_config, model_path,
+                                  exp_params=exp_config['params'])
     success, eval_output = run_command(eval_cmd, "评估全部传感器")
     if success:
         eval_outputs.append(eval_output)
@@ -139,7 +144,9 @@ def run_experiment(base_config, exp_config, results_dir, skip_training=False):
 
     # 评估各个传感器
     for sensor in SENSORS:
-        eval_cmd = build_eval_command(base_config, model_path, sensor)
+        eval_cmd = build_eval_command(base_config, model_path,
+                                      exp_params=exp_config['params'],
+                                      sensor=sensor)
         success, eval_output = run_command(eval_cmd, f"评估传感器 {sensor}")
         if success:
             eval_outputs.append(eval_output)
